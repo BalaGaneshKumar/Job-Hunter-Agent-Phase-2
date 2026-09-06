@@ -1,0 +1,26 @@
+# Secrets
+.env
+
+# Databases
+*.db
+
+# Personal data
+profile.json
+resume.pdf
+cover_letter.pdf
+
+# Workflow runtime state
+workflows/
+temp/
+logs/
+workflow_counter.json
+
+# Python
+__pycache__/
+*.pyc
+
+# Editor/OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
