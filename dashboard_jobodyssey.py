@@ -433,6 +433,17 @@ function shortId(id) {
 function joRenderList() {
   var listEl = document.getElementById('jo-list');
   var pagerEl = document.getElementById('jo-pagination');
+
+  // If this page came back empty but jobs still exist elsewhere (e.g. the
+  // last card on this page just moved out of the active filter), joPage is
+  // stale — step back to the real last page and reload instead of showing
+  // a false "No jobs found".
+  if (!joJobs.length && joTotalJobs > 0 && joPage > 1) {
+    joPage = Math.max(1, Math.ceil(joTotalJobs / JO_PAGE_SIZE));
+    joLoad();
+    return;
+  }
+
   if (!joJobs.length) {
     listEl.innerHTML = '<div class="cr-empty"><div class="cr-empty-icon">&#128203;</div>No jobs found.</div>';
     pagerEl.innerHTML = '';
